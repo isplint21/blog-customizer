@@ -24,29 +24,29 @@ type SelectProps = {
 
 export const Select = (props: SelectProps): React.JSX.Element => {
   const { options, placeholder, selected, onChange, onClose, title } = props;
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [IsSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const placeholderRef = useRef<HTMLDivElement>(null);
   const optionClassName = selected?.optionClassName ?? '';
 
   useOutsideClickClose({
-    isOpen,
+    IsSidebarOpen,
     rootRef,
     onClose,
-    onChange: setIsOpen,
+    onChange: setIsSidebarOpen,
   });
 
   useEnterSubmit({
     placeholderRef,
-    onChange: setIsOpen,
+    onChange: setIsSidebarOpen,
   });
 
   const handleOptionClick = (option: OptionType): void => {
-    setIsOpen(false);
+    setIsSidebarOpen(false);
     onChange?.(option);
   };
   const handlePlaceHolderClick: MouseEventHandler<HTMLDivElement> = () => {
-    setIsOpen((isOpen) => !isOpen);
+    setIsSidebarOpen((IsSidebarOpen) => !IsSidebarOpen);
   };
 
   return (
@@ -61,7 +61,7 @@ export const Select = (props: SelectProps): React.JSX.Element => {
       <div
         className={styles.selectWrapper}
         ref={rootRef}
-        data-is-active={isOpen}
+        data-is-active={IsSidebarOpen}
         data-testid="selectWrapper"
       >
         <img src={arrowDown} alt="иконка стрелочки" className={styles.arrow} />
@@ -85,7 +85,7 @@ export const Select = (props: SelectProps): React.JSX.Element => {
             {selected?.title ?? placeholder}
           </Text>
         </div>
-        {isOpen && (
+        {IsSidebarOpen && (
           <ul className={styles.select} data-testid="selectDropdown">
             {options
               .filter((option) => selected?.value !== option.value)

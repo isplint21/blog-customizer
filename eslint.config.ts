@@ -137,24 +137,6 @@ export default defineConfig(
       'unused-imports/no-unused-imports': 'error',
       'react-hooks/exhaustive-deps': 'off',
     },
-    settings: {
-      'css-modules': {
-        camelCase: 'true',
-        filetypes: {
-          '.css': 'postcss',
-          '.module.css': 'postcss',
-        },
-      },
-      react: {
-        version: 'detect',
-      },
-      'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          project: './tsconfig.json',
-        },
-      },
-    },
   },
   eslintPluginPrettierRecommended
 );

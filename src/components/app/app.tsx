@@ -14,9 +14,6 @@ import styles from './app.module.scss';
 export const App = (): React.JSX.Element => {
   const [appliedSettings, setAppliedSettings] =
     useState<ArticleStateType>(defaultArticleState);
-  const handleApply = (settings: ArticleStateType): void => {
-    setAppliedSettings(settings);
-  };
   return (
     <main
       className={clsx(styles.main)}
@@ -30,7 +27,7 @@ export const App = (): React.JSX.Element => {
         } as CSSProperties
       }
     >
-      <ArticleParamsForm onApply={handleApply} />
+      <ArticleParamsForm onApply={setAppliedSettings} />
       <Article />
     </main>
   );

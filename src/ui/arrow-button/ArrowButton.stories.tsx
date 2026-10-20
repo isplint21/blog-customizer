@@ -14,8 +14,7 @@ type Story = StoryObj<typeof ArrowButton>;
 export const ArrowButtonStory: Story = {
   render: () =>
     createElement(() => {
-      const [IsSidebarOpen, setIsSidebarOpen] = useState(false);
-
-      return <ArrowButton IsSidebarOpen={IsSidebarOpen} onClick={() => setIsSidebarOpen(!IsSidebarOpen)} />;
+      const [isOpen, setIsOpen] = useState(false);
+      return <ArrowButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />;
     }),
 };

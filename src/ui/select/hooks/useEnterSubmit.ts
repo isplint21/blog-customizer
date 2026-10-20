@@ -14,7 +14,7 @@ export const useEnterSubmit = ({ placeholderRef, onChange }: UseEnterSubmit): vo
 
     const handleEnterKeyDown = (event: KeyboardEvent): void => {
       if (event.key === 'Enter') {
-        onChange((IsSidebarOpen: boolean) => !IsSidebarOpen);
+        onChange((isOpen: boolean) => !isOpen);
       }
     };
     placeholderEl.addEventListener('keydown', handleEnterKeyDown);

@@ -7,12 +7,12 @@ import styles from './ArrowButton.module.scss';
 export type OnClick = () => void;
 
 type ArrowButtonProps = {
-  IsSidebarOpen: boolean;
+  isOpen: boolean;
   onClick: OnClick;
 };
 
 export const ArrowButton = ({
-  IsSidebarOpen,
+  isOpen,
   onClick,
 }: ArrowButtonProps): React.JSX.Element => {
   return (
@@ -21,13 +21,13 @@ export const ArrowButton = ({
       role="button"
       aria-label="Открыть/Закрыть форму параметров статьи"
       tabIndex={0}
-      className={clsx(styles.container, { [styles.container_open]: IsSidebarOpen })}
+      className={clsx(styles.container, { [styles.container_open]: isOpen })}
       onClick={onClick}
     >
       <img
         src={arrow}
         alt="иконка стрелочки"
-        className={clsx(styles.arrow, { [styles.arrow_open]: IsSidebarOpen })}
+        className={clsx(styles.arrow, { [styles.arrow_open]: isOpen })}
       />
     </div>
   );

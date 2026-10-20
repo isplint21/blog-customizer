@@ -29,7 +29,8 @@ export const ArticleParamsForm = ({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef<HTMLElement | null>(null);
   const buttonRef = useRef<HTMLDivElement | null>(null);
-  const [articleParams, setArticleParams] = useState<ArticleStateType>(defaultArticleState);
+  const [articleParams, setArticleParams] =
+    useState<ArticleStateType>(defaultArticleState);
   const handleClickOutside = (event: MouseEvent): void => {
     const target = event.target as Node;
     if (sidebarRef.current?.contains(target)) return;
@@ -37,10 +38,10 @@ export const ArticleParamsForm = ({
     setIsSidebarOpen(false);
   };
   const handleChange =
-  (field: keyof ArticleStateType): ((option: OptionType) => void) =>
-  (option: OptionType): void => {
-    setArticleParams((prev) => ({ ...prev, [field]: option }));
-  };
+    (field: keyof ArticleStateType): ((option: OptionType) => void) =>
+    (option: OptionType): void => {
+      setArticleParams((prev) => ({ ...prev, [field]: option }));
+    };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     onApply(articleParams);
@@ -53,14 +54,17 @@ export const ArticleParamsForm = ({
   useEffect(() => {
     if (!isSidebarOpen) return;
     document.addEventListener('mousedown', handleClickOutside);
-    return () => {
+    return (): void => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isSidebarOpen]);
   return (
     <>
       <div ref={buttonRef}>
-        <ArrowButton IsSidebarOpen={isSidebarOpen} onClick={() => setIsSidebarOpen((prev) => !prev)} />
+        <ArrowButton
+          isOpen={isSidebarOpen}
+          onClick={() => setIsSidebarOpen((prev) => !prev)}
+        />
       </div>
       <aside
         ref={sidebarRef}
@@ -89,9 +93,7 @@ export const ArticleParamsForm = ({
             selected={articleParams.fontColor}
             onChange={handleChange('fontColor')}
           />
-        
           <Separator />
-
           <Select
             title="Цвет фона"
             options={backgroundColors}
